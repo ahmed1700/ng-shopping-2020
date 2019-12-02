@@ -1,1 +1,26 @@
-<p>products works!</p>
+<div class="row">
+
+    <div class="col-3">
+        <div class="sticky-top">
+        <a [class.active]="!category" routerLink="/products" class="list-group-item list-group-item-action">
+            All Categories
+        </a>
+        <div *ngFor="let catg of categories$  | async" class="list-group">
+            <a routerLink="/products" [class.active]="category===catg.name" [queryParams]="{category:catg.name }"
+                class="list-group-item list-group-item-action">
+                {{catg.name}}
+            </a>
+        </div>
+    </div>
+    </div>
+    <div class="col-9">
+        <div class="row">
+            <ng-container *ngFor="let product of  filteredporducts ; let i =index">
+                <div class="col">
+                    <product-card [product]="product.payload.val()"></product-card>
+                </div>
+                <div *ngIf="(i+1)%2===0" class="w-100"></div>
+            </ng-container>
+        </div>
+    </div>
+</div>

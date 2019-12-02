@@ -19,6 +19,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ProductFromComponent } from './admin/product-from/product-from.component';
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
+import { DataTablesModule } from 'angular-datatables';
+import { ProductCardComponent } from './products/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     PageNotFoundComponent,
     LoginComponent,
     AdminProductsComponent,
-    AdminOrdersComponent
+    AdminOrdersComponent,
+    ProductFromComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +48,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     NgbModule ,
     AngularFireModule.initializeApp(environment.firebase) ,
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule,
+    CustomFormsModule ,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
