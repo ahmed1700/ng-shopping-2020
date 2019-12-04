@@ -11,7 +11,11 @@
               <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/shopping-cart">Shopping Cart</a>
+              <a class="nav-link" routerLink="/shopping-cart">
+                Shopping Cart
+                <span class="badge badge-pill badge-success">{{shoppingCartCounter}}</span>
+
+              </a>
             </li>
             <ng-template #anonymouseUser>
               <li  class="nav-item">

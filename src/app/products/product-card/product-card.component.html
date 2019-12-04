@@ -1,12 +1,28 @@
-<div class="card" style="width: 18rem;" *ngIf="product.title" >
-    <img [src]="product.imageUrl" *ngIf="product.imageUrl" class="card-img-top" alt="Product Photo">
+<div class="card" style="width: 18rem;" *ngIf="product.payload.val().title" >
+    <img [src]="product.payload.val().imageUrl" *ngIf="product.payload.val().imageUrl" class="card-img-top" alt="Product Photo">
     <div class="card-body">
-      <h5 class="card-title">{{product.title}}</h5>
-      <h5 class="card-title">{{product.category}}</h5>
-      <h5 class="card-text">{{product.price | currency:'usd':true}}</h5>
+      <h5 class="card-title">{{product.payload.val().title}}</h5>
+      <h5 class="card-title">{{product.payload.val().category}}</h5>
+      <h5 class="card-text">{{product.payload.val().price | currency:'usd':true}}</h5>
     </div>
     <div class="card-footer">
-        <a  href="#" class="btn btn-primary btn-block">Add to cart</a>
+
+        <button *ngIf="getQuantity()===0  ; else updateQuantity"  (click)="addToCart(product)"  class="btn btn-primary btn-block">
+            Add to cart
+        </button>
+        <ng-template #updateQuantity>
+                <div class="row no-gutters">
+                       <div class="col-2">
+                             <button  class="btn btn-secondary btn-block" (click)="addToCart(product)" >+</button>
+                       </div>
+                       <div class="col text-center">
+                                  {{getQuantity()}} in Cart
+                        </div>
+                        <div class="col-2">
+                            <button  class="btn btn-secondary btn-block" (click)="removeFromCart(product)" >-</button>
+                          </div>
+                </div>
+        </ng-template>
       </div>
 
   </div>

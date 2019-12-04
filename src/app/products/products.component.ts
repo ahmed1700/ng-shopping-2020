@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './../services/shopping-cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../services/category.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -17,11 +18,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
   filteredporducts;
   categories$;
   category = '';
+  cart;
   Subscription: Subscription;
   constructor(private productService: ProductService,
     private categoryService: CategoryService,
+    private cartServices: ShoppingCartService,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    this.cartServices.getCart().valueChanges()
+    .subscribe(cart=>{
+          this.cart = cart;
+          console.log(this.cart);
+    })
+   }
 
   ngOnInit() {
     this.Subscription = this.productService.getAllProduts().pipe(switchMap(
